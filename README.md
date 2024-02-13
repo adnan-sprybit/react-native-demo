@@ -32,3 +32,38 @@ or
 ```
 
 
+## Login
+User below credentials
+Admin :   
+UN: admin@gmail.com
+PW: admin@123 
+
+User: 
+UN: user@gmail.com
+PW: user@123
+
+You can find this in the mockoon , login and admin logins
+
+## CRUD Operation
+You can use the form to add, update, delete any items 
+You can click on the item to see the details, you can click on photo to see photo on flexbox.
+You can filter using the top text box 
+
+## Role Assignment
+
+We have two roles, 
+
+Admin:
+1. if you login with admin role, you will get option with Add, Update, Delete
+
+User
+1. If you login with user role, you will not get option to Add, Update and Delete, still you can see data and see details of the data.
+
+## Higher order function
+
+If you turn of the internet it will show strip of internet not available on any page. 
+
+## GPS feature
+To show the feature of GPS for phone capabilities, we kept a button on the login page when you click on "Show Location" it will show the current lat long of the location
+
+-- Librarys like Axios not working with Mockoon Tool, so we used a basic method to work with API. We majorly use Axios for api works. 
