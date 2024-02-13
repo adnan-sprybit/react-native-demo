@@ -1,0 +1,366 @@
+{
+  "uuid": "a33bd481-8b48-47ba-831c-a131967edc90",
+  "lastMigration": 32,
+  "name": "Test (copy)",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "192.168.1.123",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "241d91d0-c267-494d-a3e2-5b3222f2af48",
+      "type": "crud",
+      "documentation": "CRUD API routes",
+      "method": "",
+      "endpoint": "items",
+      "responses": [
+        {
+          "uuid": "f4843fae-7559-412e-9559-4e6d80cdb423",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "sc5i",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "771abf67-d970-4e6c-8299-4162e2ad95d2",
+          "body": "{\n  \"status\": false,\n  \"message\": \"Invalid token\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Bearer a8e0930e",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "904fedee-38db-4ab9-b159-7b30def7210d",
+          "body": "{\n  \"status\": false,\n  \"message\": \"No data found\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "84c44b4f-0da4-427a-acf7-37ebff3d9196",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "2b60a1ae-7087-4369-903b-bdefc9487cde",
+          "body": "{\n  \"success\": true,\n  \"token\": \"a8e0930e\",\n  \"is_Admin\" : false\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "nl11",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "user@gmail.com",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "user@123",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "694d068d-3082-4487-8272-e0bf68388ec0",
+          "body": "{\n  \"success\": false,\n  \"message\": \"User not found\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "3ac82825-196a-434b-8932-0aa04508a8c1",
+      "type": "http",
+      "documentation": "Global rules",
+      "method": "all",
+      "endpoint": "*",
+      "responses": [
+        {
+          "uuid": "f5d79ea4-7086-4895-8c2f-0c2fece1fd08",
+          "body": "{\n  \"success\": false,\n  \"message\": \"invalid token\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "a8e0930e",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "a8e0931R",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "228af92d-fc23-4f39-b3f9-18753505fb97",
+          "body": "{\n  \"success\": false,\n  \"message\": \"invalid token\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "e7917e51-8351-474a-af83-ecfa733f52b6",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "admin/login",
+      "responses": [
+        {
+          "uuid": "248a3271-45fa-493c-9d89-0e95154d58b3",
+          "body": "{\n  \"success\": true,\n  \"token\": \"a8e0931R\",\n  \"is_Admin\" : true\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "email",
+              "value": "admin@gmail.com",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "admin@123",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7e5ac549-67f1-4ba7-9d84-3b7f11b356cd",
+          "body": "{\n  \"success\": false,\n  \"message\": \"User not found\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "241d91d0-c267-494d-a3e2-5b3222f2af48"
+    },
+    {
+      "type": "route",
+      "uuid": "84c44b4f-0da4-427a-acf7-37ebff3d9196"
+    },
+    {
+      "type": "route",
+      "uuid": "e7917e51-8351-474a-af83-ecfa733f52b6"
+    },
+    {
+      "type": "route",
+      "uuid": "3ac82825-196a-434b-8932-0aa04508a8c1"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "C:\\Users\\Toshiba\\Downloads\\localhost.cer",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": false,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "a897397a-ffe2-46bc-b2e9-db61306d314d",
+      "id": "sc5i",
+      "name": "Items",
+      "documentation": "",
+      "value": "[\n  {{#repeat 10}}\n    {\n      \"id\": \"{{faker 'string.uuid'}}\",\n      \"name\": \"{{faker 'commerce.productName'}}\",\n      \"description\": \"{{faker 'lorem.paragraph'}}\",\n      \"price\": {{faker 'commerce.price'}},\n      \"category\": \"{{faker 'commerce.department'}}\",\n      \"inStock\": {{faker 'datatype.boolean'}},\n      \"rating\": {{faker 'number.int' min=0 max=5}},\n      \"createdAt\": \"{{faker 'date.past'}}\",\n      \"image\" : \"https://res.cloudinary.com/ogcodes/image/upload/v1581387688/m0e7y6s5zkktpceh2moq.jpg\"\n    }{{#unless @last}},{{/unless}}\n  {{/repeat}}\n]"
+    },
+    {
+      "uuid": "fb28fa00-1818-4c7d-9edd-62d85a4e646d",
+      "id": "nl11",
+      "name": "users",
+      "documentation": "",
+      "value": "[\n  {\n      \"id\": \"1\",\n      \"email\": \"admin@admin.com\",\n      \"password\": \"12345\",\n      \"role\": \"admin\"\n  }\n  {\n      \"id\": \"2\",\n      \"email\": \"user@user.com\",\n      \"password\": \"12345\",\n      \"role\": \"user\"\n  }\n  \n]"
+    }
+  ],
+  "callbacks": []
+}
